@@ -4,9 +4,6 @@ from bs4 import BeautifulSoup
 from urllib import request
 from io import BytesIO
 
-#nom = "421016585"
-#pas = "4rD5PHGz!b"
-
 class AsignaturaInscripcion:
     def __init__(self, **kwargs):
         self.grupo = kwargs['grupo']
@@ -125,7 +122,7 @@ class TrayectoriaElem:
         s = self.alumno.s.get(self._uri_trayectoria_elem, params={ 'cta': self.alumno.usuario, 'llave': self.siae_id, 'acc': 'ins' })
         s2 = BeautifulSoup(s.content, 'html.parser')
         insc_o = OrderedDict()
-        
+
         for i in s2.css.select('body>table>tr:last-child>td>table:nth-of-type(n+3)'):
             semestre = i.select('caption .badge')[0].text.strip()
             insc_o[semestre] = []
@@ -152,32 +149,35 @@ class SIAE:
             s = self.s.get(self._uri_trayectoria)
             self._o_soup_trayectoria = BeautifulSoup(s.content, 'html.parser')
         return self._o_soup_trayectoria
-
-    def __init__(self, usu: str, contra: str):
-        self.usuario = usu
-        self.contrasena = contra
-        self.s = requests.session()
-        self.s.headers.update({'user-agent': 'libsiae/0.1'})
+    
+    @property
+    def captcha(self) -> BytesIO:
         s1 = self.s.get(self._uri_gate)
         s2 = self.s.get(self._uri_captcha)
-        f = open("captcha.png", "wb")
-        f.write(s2.content)
-        f.flush()
+        return BytesIO(s2.content)
+
+    def __init__(self):
+        self.s = requests.session()
+        self.s.headers.update({'user-agent': 'libsiae/0.1'})
 
     def __str__(self):
         return "Alumno[(%s) %s]" % (self.usuario, self.nombre)
 
-    def captcha(self, captcha: str) -> bool:
+    def login(self, usu: str, contra: str, captcha: str|int) -> bool:
+        self.usuario = usu
+        self.contrasena = contra
         self.s.post(self._uri_gate, data={
             "acc": "aut",
             "usr_logi": self.usuario,
             "usr_pass": self.contrasena,
-            "captcha": captcha
+            "captcha": str(captcha)
         })
+        # Comprobar inicio de sesión exitoso
         try:
-            a = self.trayectoria
+            a = self.nombre
             return True
         except:
+            del self._o_soup_trayectoria
             return False
 
     @property

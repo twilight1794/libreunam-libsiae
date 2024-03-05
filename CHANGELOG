@@ -1,0 +1,6 @@
+2024-03-05 Campanita <campanita@disroot.org>
+
+	Publicación inicial
+
+	* src/libreunam/siae.py: añadidos métodos para consultar datos de períodos, 
+        historiales académicos, e inscripciones

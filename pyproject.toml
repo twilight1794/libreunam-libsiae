@@ -1,0 +1,19 @@
+[project]
+name = "libsiae"
+version = "1.0"
+authors = [
+  { name="Campanita", email="campanita@disroot.org" },
+]
+description = "API para acceder a los datos del sistema SIAE de la DGAE UNAM"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://gitlab.com/libre-unam/libsiae"
+Issues = "https://gitlab.com/libre-unam/libsiae/-/issues"
