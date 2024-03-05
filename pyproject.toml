@@ -1,5 +1,5 @@
 [project]
-name = "libsiae"
+name = "libreunam-libsiae"
 version = "1.0"
 authors = [
   { name="Campanita", email="rapunzel@disroot.org" },
