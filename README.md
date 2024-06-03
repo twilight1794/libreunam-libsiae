@@ -31,7 +31,7 @@ obj.login(usuario, contraseña, respuesta_captcha)
 hist = obj.trayectoria[0].inscripcion[1] # Mi última inscripción
 ```
 
-Si querías implementar un sistema de inicio de sesión basado en cuentas del SIAE, tal vez te interese [este módulo de autentificación para Django](https://gitlab.com/libre-unam/django-auth-libreunam-siae).
+<!--Si querías implementar un sistema de inicio de sesión basado en cuentas del SIAE, tal vez te interese [este módulo de autentificación para Django](https://gitlab.com/libre-unam/django-auth-libreunam-siae).-->
 ## Ayuda
 Me gustaría poder seguir dedicando tiempo para realizar más herramientas libres. Si lo consideras pertinente, puedes [invitarme un té 🍵](https://paypal.me/twilight1794). También puedes ayudarme a mantener estas utilidades, puedes contactarme si te interesa. ¡Muchas gracias!
 
